@@ -6,5 +6,4 @@ export {
     createJWT,
     isTokenValid,
     attachCookiesToResponse
-
 }
