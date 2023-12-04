@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -38,11 +38,6 @@ const UserSchema = new mongoose.Schema({
         default:'user',
     },
 })
-
-UserSchema.methods.createJWT = function (){
-    return  jwt.sign({userId : this._id,name:this.name, role:this.role},process.env.JWT_SECRET, {expiresIn: process.env.JWT_LIFETIME});
-}
-
 
 UserSchema.methods.comparePassword = async function (pass){
     return await bcrypt.compare(pass, this.password)

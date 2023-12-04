@@ -2,6 +2,7 @@
 import StatusCodes from 'http-status-codes'
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
+import {attachCookiesToResponse} from "../utils/index.js"
 
 const register = async (req,res)=>{
     try{
@@ -18,8 +19,10 @@ const register = async (req,res)=>{
             password: hashed
         });
         user.save()
-        const token = user.createJWT();
-        return res.status(StatusCodes.CREATED).json({user : user.name , msg : "just created" ,token})
+        const payload = {name:name, email:email}
+        attachCookiesToResponse({res, user:payload})
+        return  res.status(StatusCodes.CREATED).json({user})
+
     }catch (error) {
         return res.status(StatusCodes.BAD_REQUEST).json({msg : "cant create user"})
     }

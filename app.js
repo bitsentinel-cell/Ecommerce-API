@@ -5,7 +5,8 @@ import dotenv from 'dotenv'
 dotenv.config()
 import notFoundMiddleware from './src/middlewares/not-found.js'
 import errorHandlerMiddleware from "./src/middlewares/error-handler.js";
-import morgan from 'morgan'
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser'
 import authRouter from "./src/routes/authRoutes.js";
 
 const app = express();
@@ -15,9 +16,10 @@ const port = process.env.PORT | 8000;
 // middlewares
 app.use(morgan('tiny'))
 app.use(express.json());
+app.use(cookieParser())
 
-
-app.get('/' , (req , res)=>{
+app.get('/api/v1' , (req , res)=>{
+    console.log(req.cookies)
     return res.send('hello from express server...')
 })
 
