@@ -6,15 +6,15 @@ import {getAllUsers,
     showCurrentUsers,
     updateUsers,
     updateUserPassword} from '../controllers/UserController.js';
-
+import {authorization , authenticateUser} from "../middlewares/authentication.js";
 
 const router = express.Router();
 
-router.get('/' , getAllUsers);
-router.get('/showMe' , showCurrentUsers);
-router.get('/:id' , getSingleUsers);
-router.patch('/updateUser' , updateUsers);
-router.patch('/updateUserPassword' , updateUserPassword);
+router.get('/' ,authenticateUser, authorization('admin' ), getAllUsers);
+router.get('/showMe' , authenticateUser , showCurrentUsers);
+router.get('/:id' ,authenticateUser, getSingleUsers);
+router.patch('/updateUser' ,authenticateUser , updateUsers);
+router.patch('/updateUserPassword', authenticateUser , updateUserPassword);
 
 export default router;
 

@@ -10,6 +10,7 @@ import cookieParser from 'cookie-parser';
 import cors from "cors"
 import authRouter from "./src/routes/authRoutes.js";
 import userRouter from "./src/routes/userRoutes.js";
+
 const app = express();
 const port = process.env.PORT | 8000;
 
@@ -27,7 +28,7 @@ app.get('/api/v1' , (req , res)=>{
 
 // routes
 app.use('/api/v1/auth' , authRouter);
-app.use('/api/v1/users' , userRouter)
+app.use('/api/v1/users', userRouter)
 
 
 

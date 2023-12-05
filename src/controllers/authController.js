@@ -1,8 +1,8 @@
 'use strict';
 import StatusCodes from 'http-status-codes';
 import User from "../models/User.js";
-import bcrypt, {compare} from "bcrypt";
-import {attachCookiesToResponse} from "../utils/index.js"
+import bcrypt from "bcrypt";
+import {attachCookiesToResponse , createTokenUser} from "../utils/index.js"
 
 const register = async (req,res)=>{
     try{
@@ -17,10 +17,12 @@ const register = async (req,res)=>{
             name : name,
             email: email,
             password: hashed
-        });
+        })
+
         user.save();
-        const payload = {name:name, email:email}
-        attachCookiesToResponse({res, user:payload});
+        const tokenUser = await createTokenUser(user)
+        attachCookiesToResponse({res, user:tokenUser});
+
         return  res.status(StatusCodes.CREATED).json({user});
     }catch (error) {
         return res.status(StatusCodes.BAD_REQUEST).json({msg : "cant create user"});
@@ -28,11 +30,12 @@ const register = async (req,res)=>{
 }
 const login = async (req,res)=>{
     try{
-        const { name ,email ,password} = req.body
+        const {name, email ,password} = req.body
         if(!email || !password){
             return res.status(StatusCodes.NOT_FOUND).json({msg : "please provide with email and password"})
         }
         const user = await User.findOne({email});
+
         if (!user){
             return res.status(StatusCodes.NOT_FOUND).json({msg : "user not found"})
         }
@@ -41,8 +44,8 @@ const login = async (req,res)=>{
         if (!isPasswordCorrect){
             return res.status(StatusCodes.NOT_FOUND).json({msg : "password is not valid"})
         }
-        const payload = {name:name, email:email}
-        attachCookiesToResponse({res, user:payload});
+        const tokenUser = await createTokenUser(user)
+        attachCookiesToResponse({res, user:tokenUser});
         return res.status(StatusCodes.OK).json({user});
     }catch (error) {
         return res.status(StatusCodes.BAD_REQUEST).json({msg : "cant login the user"});
