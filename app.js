@@ -7,9 +7,11 @@ import notFoundMiddleware from './src/middlewares/not-found.js';
 import errorHandlerMiddleware from "./src/middlewares/error-handler.js";
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-import cors from "cors"
+import fileUpload from 'express-fileupload'
+import cors from "cors";
 import authRouter from "./src/routes/authRoutes.js";
 import userRouter from "./src/routes/userRoutes.js";
+import productRouter from "./src/routes/productRoutes.js";
 
 const app = express();
 const port = process.env.PORT | 8000;
@@ -20,7 +22,8 @@ app.use(cors())
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
-
+app.use(express.static('./src/public'));
+app.use(fileUpload())
 app.get('/api/v1' , (req , res)=>{
     console.log(req.signedCookies)
     return res.send('hello from express server...');
@@ -28,7 +31,8 @@ app.get('/api/v1' , (req , res)=>{
 
 // routes
 app.use('/api/v1/auth' , authRouter);
-app.use('/api/v1/users', userRouter)
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/products', productRouter);
 
 
 

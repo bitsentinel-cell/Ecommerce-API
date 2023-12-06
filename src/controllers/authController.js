@@ -22,7 +22,6 @@ const register = async (req,res)=>{
         user.save();
         const tokenUser = await createTokenUser(user)
         attachCookiesToResponse({res, user:tokenUser});
-
         return  res.status(StatusCodes.CREATED).json({user});
     }catch (error) {
         return res.status(StatusCodes.BAD_REQUEST).json({msg : "cant create user"});

@@ -1,5 +1,6 @@
 'use strict'
 
+import CustomError from "../errors/unauthorized.js"
 const checkPermissions = (requestUser, resourceUserId) => {
     // console.log(requestUser);
     // console.log(resourceUserId);

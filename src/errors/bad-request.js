@@ -1,7 +1,6 @@
-'use strict';
+'use strict'
 import { StatusCodes } from 'http-status-codes';
-import CustomAPIError from '../errors/custom-api.js';
-
+import CustomAPIError from '../errors/custom-api.js'
 
 class BadRequestError extends CustomAPIError {
   constructor(message) {
@@ -10,4 +9,5 @@ class BadRequestError extends CustomAPIError {
   }
 }
 
-export default BadRequestError
+export default BadRequestError;
+

@@ -9,13 +9,13 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   };
   if (err.name === 'ValidationError') {
     customError.msg = Object.values(err.errors)
-      .map((item) => item.message)
-      .join(',');
+        .map((item) => item.message)
+        .join(',');
     customError.statusCode = 400;
   }
   if (err.code && err.code === 11000) {
     customError.msg = `Duplicate value entered for ${Object.keys(
-      err.keyValue
+        err.keyValue
     )} field, please choose another value`;
     customError.statusCode = 400;
   }
@@ -25,6 +25,8 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   }
 
   return res.status(customError.statusCode).json({ msg: customError.msg });
+
+
 };
 
 export default errorHandlerMiddleware;
