@@ -12,6 +12,8 @@ import cors from "cors";
 import authRouter from "./src/routes/authRoutes.js";
 import userRouter from "./src/routes/userRoutes.js";
 import productRouter from "./src/routes/productRoutes.js";
+import reviewRouter from "./src/routes/reviewRoutes.js";
+
 
 const app = express();
 const port = process.env.PORT | 8000;
@@ -33,6 +35,7 @@ app.get('/api/v1' , (req , res)=>{
 app.use('/api/v1/auth' , authRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
+app.use('/api/v1/reviews', reviewRouter);
 
 
 
