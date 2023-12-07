@@ -30,7 +30,7 @@ import orderRouter from "./src/routes/reviewRoutes.js";
 const app = express();
 const port = process.env.PORT | 8000;
 
-
+app.use(cors());
 // security packages
 // app.set('trust proxy', 1);
 // app.use(
@@ -40,7 +40,7 @@ const port = process.env.PORT | 8000;
 //     })
 // );
 app.use(helmet());
-app.use(cors());
+
 // app.use(xss());
 // app.use(mongoSanitize());
 
