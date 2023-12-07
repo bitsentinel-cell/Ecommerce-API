@@ -23,6 +23,15 @@ dependencies:
   express-fileupload:
     specifier: ^1.4.3
     version: 1.4.3
+  express-mongo-sanitize:
+    specifier: ^2.2.0
+    version: 2.2.0
+  express-rate-limiter:
+    specifier: ^1.3.1
+    version: 1.3.1
+  helmet:
+    specifier: ^7.1.0
+    version: 7.1.0
   http-status-codes:
     specifier: ^2.3.0
     version: 2.3.0
@@ -41,6 +50,9 @@ dependencies:
   validator:
     specifier: ^13.11.0
     version: 13.11.0
+  xss-clean:
+    specifier: ^0.1.4
+    version: 0.1.4
 
 devDependencies:
   '@types/node':
@@ -397,6 +409,15 @@ packages:
       busboy: 1.6.0
     dev: false
 
+  /express-mongo-sanitize@2.2.0:
+    resolution: {integrity: sha512-PZBs5nwhD6ek9ZuP+W2xmpvcrHwXZxD5GdieX2dsjPbAbH4azOkrHbycBud2QRU+YQF1CT+pki/lZGedHgo/dQ==}
+    engines: {node: '>=10'}
+    dev: false
+
+  /express-rate-limiter@1.3.1:
+    resolution: {integrity: sha512-qLRc4ZkyCcfUCjPtVjwQOtf4OYPc7hc6ObOFemeeVYLlbam541/B7R33VvhztFsBGRUIT/wJW/oJz8n5k+fRfw==}
+    dev: false
+
   /express@4.18.2:
     resolution: {integrity: sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ==}
     engines: {node: '>= 0.10.0'}
@@ -569,6 +590,11 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       function-bind: 1.1.2
+    dev: false
+
+  /helmet@7.1.0:
+    resolution: {integrity: sha512-g+HZqgfbpXdCkme/Cd/mZkV0aV3BZZZSugecH03kl38m/Kmdx8jKjBikpDj2cr+Iynv4KpYEviojNdTJActJAg==}
+    engines: {node: '>=16.0.0'}
     dev: false
 
   /http-errors@2.0.0:
@@ -1337,6 +1363,17 @@ packages:
 
   /wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+    dev: false
+
+  /xss-clean@0.1.4:
+    resolution: {integrity: sha512-4hArTFHYxrifK9VXOu/zFvwjTXVjKByPi6woUHb1IqxlX0Z4xtFBRjOhTKuYV/uE1VswbYsIh5vUEYp7MmoISQ==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+    dependencies:
+      xss-filters: 1.2.7
+    dev: false
+
+  /xss-filters@1.2.7:
+    resolution: {integrity: sha512-KzcmYT/f+YzcYrYRqw6mXxd25BEZCxBQnf+uXTopQDIhrmiaLwO+f+yLsIvvNlPhYvgff8g3igqrBxYh9k8NbQ==}
     dev: false
 
   /yallist@4.0.0:

@@ -9,6 +9,8 @@ import {
     updateProduct,
     deleteProduct,
     uploadImage } from '../controllers/ProductController.js';
+
+import {getSingleProductReviews} from '../controllers/ReviewController.js'
 const router = express.Router();
 
 
@@ -19,5 +21,8 @@ router.patch('/:id' ,authenticateUser,authorization('admin'), updateProduct);
 router.delete('/:id' ,authenticateUser,authorization('admin'), deleteProduct);
 router.post('/imageUpload' , uploadImage)
 
+
+
+router.get('/:id/reviews' , getSingleProductReviews);
 
 export default router;

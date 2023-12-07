@@ -43,17 +43,17 @@ const updateProduct = async (req , res) =>{
 }
 
 const deleteProduct = async (req , res) =>{
-    try {
+
         const {id: productId} = req.params;
-        const product = await Product.findOneAndDelete({_id: productId});
+        const product = await Product.findOne({_id: productId});
         if (!product) {
-            return res.status(StatusCodes.NOT_FOUND).json({msg: `there is no product with this id : ${productId}`})
+            return res.status(StatusCodes.NOT_FOUND).json({msg: `the product not found with the id of : ${productId}`})
         }
+        await product.deleteOne()
         res.status(StatusCodes.OK).json({msg: 'Success! Product removed.'});
-    }catch (e) {
-        console.log('something')
-    }
+
 }
+
 
 const uploadImage = async (req , res) =>{
 
